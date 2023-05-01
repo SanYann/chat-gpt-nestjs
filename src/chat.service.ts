@@ -21,11 +21,11 @@ export class ChatService {
     this.openai = new OpenAIApi(configuration);
   }
 
-  async chatCompletion() {
+  async chatCompletion(prompt: string) {
     try {
       const completion = await this.openai.createCompletion({
         model: 'text-davinci-003',
-        prompt: 'Hello world',
+        prompt,
       });
       return completion.data.choices[0].text;
     } catch (error) {
