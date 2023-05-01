@@ -9,7 +9,7 @@
   "scripts": {
     "build": "rm -rf dist && tsc -p tsconfig.json",
     "format": "prettier --write \"src/**/*.ts\"",
-    "lint": "eslint . --ext .ts",
+    "lint": "eslint 'src/**/*.ts' --fix",
     "postversion": "git push && git push --tags",
     "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint",
