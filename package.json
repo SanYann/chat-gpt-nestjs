@@ -1,7 +1,7 @@
 {
   "name": "chat-gpt-nestjs",
   "version": "0.2.0",
-  "description": "<p align=\"center\">   <a href=\"http://nestjs.com/\" target=\"blank\"><img src=\"https://nestjs.com/img/logo-small.svg\" width=\"200\" alt=\"Nest Logo\" /></a> </p>",
+  "description": "Empower nestjs with native OpenAi integration",
   "author": "SanYann",
   "license": "ISC",
   "main": "dist/index.js",
@@ -18,8 +18,11 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@nestjs/cache-manager": "^1.0.0",
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
+    "axios": "^1.4.0",
+    "cache-manager": "^5.2.1",
     "openai": "^3.2.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0"
