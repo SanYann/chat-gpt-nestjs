@@ -4,6 +4,9 @@
   "description": "Empower nestjs with native OpenAi integration",
   "author": "SanYann",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SanYann/chat-gpt-nestjs/issues"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -17,6 +20,16 @@
     "version": "npm run format && git add -A src",
     "prepare": "husky install"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SanYann/chat-gpt-nestjs"
+  },
+  "keywords": [
+    "chatgpt",
+    "openai",
+    "nestjs",
+    "typescript"
+  ],
   "dependencies": {
     "@nestjs/cache-manager": "^1.0.0",
     "@nestjs/common": "^9.0.0",
@@ -27,6 +40,7 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0"
   },
+  "homepage": "https://github.com/SanYann/chat-gpt-nestjs#readme",
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",
     "@nestjs/schematics": "^9.0.0",

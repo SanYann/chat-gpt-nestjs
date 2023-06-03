@@ -10,12 +10,12 @@ import { CHAT_COMPLETION_MODEL } from './constants';
 
 @Injectable()
 export class ChatService {
-  private openai: OpenAIApi;
+  public openai: OpenAIApi;
   private apiKey: string;
   private organization: string;
   constructor(
     @Inject(CACHE_MANAGER) private cacheManager: Cache,
-    @Inject(MODULE_OPTIONS_TOKEN) private options: ChatModuleOptions,
+    @Inject(MODULE_OPTIONS_TOKEN) options: ChatModuleOptions,
   ) {
     this.apiKey = options.apiKey;
     this.organization = options.organizationId;
