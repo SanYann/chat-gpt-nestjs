@@ -1,6 +1,6 @@
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Add openai in your nestjs module
 
 ## Installation
 
@@ -68,6 +68,9 @@ export class AppService {
 }
 ```
 
+## Roadmap
+[x] Get listModels and cache results to avoid to many calls
+[] More to come!
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
