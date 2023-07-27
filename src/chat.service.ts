@@ -7,6 +7,7 @@ import { ChatModuleOptions } from './interfaces/chat.module.interface';
 import { MODULE_OPTIONS_TOKEN } from './chat.module.definition';
 import { CreateChatCompletionRequest } from './interfaces/create-chat-completion.interface';
 import { CHAT_COMPLETION_MODEL } from './constants';
+import { CreateCompletionRequest } from './interfaces/create-completion.interface';
 
 @Injectable()
 export class ChatService {
@@ -80,12 +81,11 @@ export class ChatService {
     }
   }
 
-  async createCompletion(prompt: string) {
+  async createCompletion(createCompletionRequest: CreateCompletionRequest) {
     try {
-      const completion = await this.openai.createCompletion({
-        model: 'text-davinci-003',
-        prompt,
-      });
+      const completion = await this.openai.createCompletion(
+        createCompletionRequest,
+      );
       return completion.data.choices[0].text;
     } catch (error) {
       if (error.response) {
