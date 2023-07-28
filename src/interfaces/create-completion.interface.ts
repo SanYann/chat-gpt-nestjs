@@ -1,4 +1,4 @@
-import { CHAT_COMPLETION_MODEL } from 'src/enum/model.enum';
+import { CHAT_COMPLETION_MODEL } from '../enum/model.enum';
 
 export interface CreateCompletionRequest {
   model: CHAT_COMPLETION_MODEL;

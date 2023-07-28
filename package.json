@@ -10,15 +10,15 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "rm -rf dist && tsc -p tsconfig.json",
-    "format": "prettier --write \"src/**/*.ts\"",
+    "prepare": "husky install",
     "lint": "eslint 'src/**/*.ts' --fix",
-    "postversion": "git push && git push --tags",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "build": "npm run lint && nest build",
+    "test": "jest --passWithNoTests",
     "prepublishOnly": "npm test && npm run build && npm run lint",
     "preversion": "npm run lint",
-    "test": "jest --passWithNoTests",
     "version": "npm run format && git add -A src",
-    "prepare": "husky install"
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
