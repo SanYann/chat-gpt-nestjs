@@ -6,8 +6,8 @@ import { Configuration, Model, OpenAIApi } from 'openai';
 import { ChatModuleOptions } from './interfaces/chat.module.interface';
 import { MODULE_OPTIONS_TOKEN } from './chat.module.definition';
 import { CreateChatCompletionRequest } from './interfaces/create-chat-completion.interface';
-import { CHAT_COMPLETION_MODEL } from './constants';
 import { CreateCompletionRequest } from './interfaces/create-completion.interface';
+import { CHAT_COMPLETION_MODEL } from './enum/model.enum';
 
 @Injectable()
 export class ChatService {
