@@ -56,20 +56,23 @@ export class ChatService {
     try {
       const models = await this.listModels();
       const completion = await this.openai.createChatCompletion({
-        model: models.find((m) => m.id === CHAT_COMPLETION_MODEL.GPT_4)
-          ? CHAT_COMPLETION_MODEL.GPT_4
-          : CHAT_COMPLETION_MODEL.GPT_3_5_TURBO,
-        messages: [
-          { role: 'user', content: createChatCompletionRequest.content },
-        ],
+        model:
+          createChatCompletionRequest?.model ??
+          models.find((m) => m.id === CHAT_COMPLETION_MODEL.GPT_4)
+            ? CHAT_COMPLETION_MODEL.GPT_4
+            : CHAT_COMPLETION_MODEL.GPT_3_5_TURBO,
+        messages: createChatCompletionRequest.messages,
         ...(createChatCompletionRequest.temperature && {
           temperature: createChatCompletionRequest.temperature,
         }),
         ...(createChatCompletionRequest.top_p && {
           top_p: createChatCompletionRequest.top_p,
         }),
+        ...(createChatCompletionRequest.max_tokens && {
+          max_tokens: createChatCompletionRequest.max_tokens,
+        }),
       });
-      return completion.data.choices[0].message?.content;
+      return completion.data;
     } catch (error) {
       if (error.response) {
         throw new Error(
