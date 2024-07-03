@@ -1,7 +1,7 @@
-import { ChatCompletionMessageParam } from 'openai/resources';
+import { ChatCompletionMessageParam, ChatModel } from 'openai/resources';
 
 export interface CreateChatCompletionRequest {
-  model: string;
+  model: ChatModel;
   messages: ChatCompletionMessageParam[];
   temperature?: number;
   top_p?: number;

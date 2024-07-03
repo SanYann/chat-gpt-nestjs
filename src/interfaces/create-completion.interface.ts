@@ -1,7 +1,7 @@
-import { CHAT_COMPLETION_MODEL } from '../enum/model.enum';
+import { ChatModel } from 'openai/resources';
 
 export interface CreateCompletionRequest {
-  model: CHAT_COMPLETION_MODEL;
+  model: ChatModel;
   prompt: string;
   suffix?: string;
   max_tokens?: number;
