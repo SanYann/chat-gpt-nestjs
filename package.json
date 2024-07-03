@@ -1,6 +1,6 @@
 {
   "name": "chat-gpt-nestjs",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Empower nestjs with native OpenAi integration",
   "author": "SanYann",
   "license": "ISC",
