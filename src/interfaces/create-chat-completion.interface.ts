@@ -1,14 +1,8 @@
-import { ChatCompletionRequestMessageRoleEnum } from 'openai';
-
-export interface CreateChatCompletionMessages {
-  role: ChatCompletionRequestMessageRoleEnum;
-  content: string;
-  name?: string;
-}
+import { ChatCompletionMessageParam } from 'openai/resources';
 
 export interface CreateChatCompletionRequest {
-  model?: string;
-  messages: CreateChatCompletionMessages[];
+  model: string;
+  messages: ChatCompletionMessageParam[];
   temperature?: number;
   top_p?: number;
   n?: number;

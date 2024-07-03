@@ -1,10 +1,8 @@
 import { Module } from '@nestjs/common';
-import { CacheModule } from '@nestjs/cache-manager';
-import { ChatService } from './chat.service';
 import { ConfigurableModuleClass } from './chat.module.definition';
+import { ChatService } from './chat.service';
 
 @Module({
-  imports: [CacheModule.register()],
   providers: [ChatService],
   exports: [ChatService],
 })
