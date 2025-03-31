@@ -4,6 +4,7 @@ import { MODULE_OPTIONS_TOKEN } from './chat.module.definition';
 import { ChatModuleOptions } from './interfaces/chat.module.interface';
 import { CreateChatCompletionRequest } from './interfaces/create-chat-completion.interface';
 import { CreateCompletionRequest } from './interfaces/create-completion.interface';
+import { Model } from 'openai/resources/models';
 
 @Injectable()
 export class ChatService {
@@ -11,16 +12,18 @@ export class ChatService {
 
   constructor(@Inject(MODULE_OPTIONS_TOKEN) options: ChatModuleOptions) {
     this.openai = new OpenAI({
-      organization: options.organizationId,
-      apiKey: options.apiKey,
+      organization: options?.organizationId,
+      apiKey: options?.apiKey,
     });
   }
 
   async createChatCompletion(
     createChatCompletionRequest: CreateChatCompletionRequest,
+    params?: ChatModuleOptions,
   ) {
     try {
-      const completion = await this.openai.chat.completions.create({
+      const openai = this.openai.apiKey ? this.openai : new OpenAI(params);
+      const completion = await openai.chat.completions.create({
         model: createChatCompletionRequest.model,
         messages: createChatCompletionRequest.messages,
         ...(createChatCompletionRequest.temperature && {
@@ -45,12 +48,36 @@ export class ChatService {
     }
   }
 
-  async createCompletion(createCompletionRequest: CreateCompletionRequest) {
+  async createCompletion(
+    createCompletionRequest: CreateCompletionRequest,
+    params?: ChatModuleOptions,
+  ) {
     try {
-      const completion = await this.openai.completions.create(
+      const openai = this.openai.apiKey ? this.openai : new OpenAI(params);
+      const completion = await openai.completions.create(
         createCompletionRequest,
       );
       return completion;
+    } catch (error) {
+      if (error.response) {
+        throw new Error(
+          `[${error.response.status}]: ${JSON.stringify(error.response.data)}`,
+        );
+      } else {
+        throw new Error(error.message);
+      }
+    }
+  }
+
+  async getModels(params?: ChatModuleOptions) {
+    try {
+      const openai = this.openai.apiKey ? this.openai : new OpenAI(params);
+      const list = await openai.models.list();
+      const models: Model[] = [];
+      for await (const model of list) {
+        models.push(model);
+      }
+      return models;
     } catch (error) {
       if (error.response) {
         throw new Error(

@@ -1,4 +1,4 @@
 export interface ChatModuleOptions {
-  organizationId: string;
-  apiKey: string;
+  organizationId?: string;
+  apiKey?: string;
 }
