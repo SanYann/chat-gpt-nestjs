@@ -1,4 +1,5 @@
 import { ChatModel } from 'openai/resources';
+import { CompletionCreateParamsBase } from 'openai/resources/completions';
 
 export interface CreateCompletionRequest {
   model: ChatModel;
@@ -17,3 +18,5 @@ export interface CreateCompletionRequest {
   best_of?: number;
   user?: string;
 }
+
+export { CompletionCreateParamsBase };

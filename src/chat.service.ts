@@ -5,6 +5,8 @@ import { ChatModuleOptions } from './interfaces/chat.module.interface';
 import { CreateChatCompletionRequest } from './interfaces/create-chat-completion.interface';
 import { CreateCompletionRequest } from './interfaces/create-completion.interface';
 import { Model } from 'openai/resources/models';
+import { ResponseCreateParamsNonStreaming } from 'openai/resources/responses/responses';
+import { CompletionCreateParamsBase } from 'openai/resources/completions';
 
 @Injectable()
 export class ChatService {
@@ -49,7 +51,7 @@ export class ChatService {
   }
 
   async createCompletion(
-    createCompletionRequest: CreateCompletionRequest,
+    createCompletionRequest: CompletionCreateParamsBase,
     params?: ChatModuleOptions,
   ) {
     try {
@@ -57,6 +59,25 @@ export class ChatService {
       const completion = await openai.completions.create(
         createCompletionRequest,
       );
+      return completion;
+    } catch (error) {
+      if (error.response) {
+        throw new Error(
+          `[${error.response.status}]: ${JSON.stringify(error.response.data)}`,
+        );
+      } else {
+        throw new Error(error.message);
+      }
+    }
+  }
+
+  async createResponse(
+    createCompletionRequest: ResponseCreateParamsNonStreaming,
+    params?: ChatModuleOptions,
+  ) {
+    try {
+      const openai = this.openai.apiKey ? this.openai : new OpenAI(params);
+      const completion = await openai.responses.create(createCompletionRequest);
       return completion;
     } catch (error) {
       if (error.response) {
