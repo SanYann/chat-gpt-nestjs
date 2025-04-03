@@ -3,7 +3,6 @@ import OpenAI from 'openai';
 import { MODULE_OPTIONS_TOKEN } from './chat.module.definition';
 import { ChatModuleOptions } from './interfaces/chat.module.interface';
 import { CreateChatCompletionRequest } from './interfaces/create-chat-completion.interface';
-import { CreateCompletionRequest } from './interfaces/create-completion.interface';
 import { Model } from 'openai/resources/models';
 import { ResponseCreateParamsNonStreaming } from 'openai/resources/responses/responses';
 import { CompletionCreateParamsBase } from 'openai/resources/completions';
